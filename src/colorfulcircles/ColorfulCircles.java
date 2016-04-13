@@ -7,10 +7,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -18,6 +20,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,6 +30,11 @@ public class ColorfulCircles extends Application {
  
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setTitle("JavaFX Welcome");
+         GridPane grid = new GridPane();
+        
+         Text scenetitle = new Text("holmis");
+         grid.add(scenetitle, 0, 0, 2, 1);
         Group root = new Group();
         Scene scene = new Scene(root, 800, 600, Color.BLACK);
         primaryStage.setScene(scene);
@@ -49,11 +57,13 @@ Rectangle colors = new Rectangle(scene.getWidth(), scene.getHeight(),
             new Stop(0.71, Color.web("#ed5fc2")),
             new Stop(0.85, Color.web("#ef504c")),
             new Stop(1, Color.web("#f2660f")),}));
+
             colors.widthProperty().bind(scene.widthProperty());
             colors.heightProperty().bind(scene.heightProperty());
             root.getChildren().add(colors);
             root.getChildren().add(circles);
              circles.setEffect(new BoxBlur(10, 10, 3));
+             
               Timeline timeline = new Timeline();
              
 for (Node circle: circles.getChildren()) {
